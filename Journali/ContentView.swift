@@ -8,14 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showSplash = true
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            if showSplash {
+                SplashView()
+                    .transition(.opacity)
+            } else {
+                MainView()
+                    .transition(.opacity)
+            }
         }
-        .padding()
+        .preferredColorScheme(.dark)
+        .task {
+            // Wait 2 seconds, then fade from the Splash to the Main page
+            try? await Task.sleep(for: .seconds(2))
+            withAnimation(.easeInOut(duration: 0.4)) {
+                showSplash = false
+            }
+        }
     }
 }
 
