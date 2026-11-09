@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Journali
+// Journali - my first app
 //
 //  Created by Waad AlMalki on 09/11/2026.
 //
