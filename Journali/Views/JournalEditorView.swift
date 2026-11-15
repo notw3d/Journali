@@ -146,4 +146,6 @@ struct JournalEditorView: View {
 
 #Preview {
     JournalEditorView(viewModel: JournalViewModel())
+        .preferredColorScheme(.dark)
+
 }

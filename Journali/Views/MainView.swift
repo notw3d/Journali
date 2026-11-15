@@ -17,9 +17,7 @@ struct MainView: View {
 
     var body: some View {
         NavigationStack {
-            ZStack {
-                Color.appBackground.ignoresSafeArea()
-
+            VStack {
                 if viewModel.journals.isEmpty {
                     EmptyStateView()
                 } else {
@@ -99,4 +97,5 @@ struct MainView: View {
 
 #Preview {
     MainView()
+        .preferredColorScheme(.dark)
 }
