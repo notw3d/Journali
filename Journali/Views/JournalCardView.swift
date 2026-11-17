@@ -9,11 +9,16 @@ import SwiftUI
 
 struct JournalCardView: View {
     let journal: Journal
+    // اليومية التي يعرضها الكرت. let لأن الكرت يعرض فقط ولا يغيّر شيئاً
+
     let onBookmarkTap: () -> Void
+    // "الجرس": الكرت يشغّله عند الضغط على البوكمارك، وصفحة MainView هي التي تقرر ماذا يحدث
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
+
             HStack(alignment: .top) {
+
                 Text(journal.title)
                     .font(.system(size: 24, weight: .semibold))
                     .foregroundStyle(Color.appTextAccent)
@@ -22,7 +27,10 @@ struct JournalCardView: View {
                 Spacer()
 
                 Button(action: onBookmarkTap) {
+                    // عند الضغط يشغّل الـ closure الذي استلمه الكرت
+
                     Image(systemName: journal.isBookmarked ? "bookmark.fill" : "bookmark")
+                        // شرط ? أ : ب  إذا اليومية في المفضلة أيقونة ممتلئة، وإلا أيقونة فاضية
                         .font(.system(size: 20))
                         .foregroundStyle(Color.appAccent)
                 }
@@ -40,8 +48,13 @@ struct JournalCardView: View {
                 .padding(.top, 10)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+        // يجعل الكرت بعرض الشاشة كاملة، والمحتوى ملتصق باليسار
+
         .padding(20)
+        // padding: مسافة داخل الكرت. الترتيب مهم: لازم قبل الـ background
+
         .background(Color.appCard, in: RoundedRectangle(cornerRadius: 24))
+        // background: الصندوق الداكن بزوايا مدورة. جاء بعد الـ padding ليشمل المسافة
     }
 }
 
